@@ -21,6 +21,115 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## About EduFlow
+
+EduFlow is a Learning Management System (LMS) built with Laravel. It provides a comprehensive platform for online education with features including:
+
+- **Course Management**: Create and organize courses with modules, videos, and documents
+- **User Roles**: Support for students, instructors, and administrators
+- **Forums**: Reddit-style discussion forums for course communities
+- **Progress Tracking**: Monitor student progress through course modules
+- **Announcements**: Broadcast important updates to users
+- **Enrollment System**: Flexible course enrollment with verification
+
+## Setup Instructions
+
+### 1. Clone and Install
+
+```bash
+git clone <repository-url>
+cd eduflow
+composer install
+npm install
+```
+
+### 2. Environment Configuration
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Generate application key:
+
+```bash
+php artisan key:generate
+```
+
+### 3. Database Setup (Supabase PostgreSQL)
+
+EduFlow uses **Supabase** as its database backend. Follow these steps:
+
+#### Create a Supabase Project
+
+1. Go to [supabase.com](https://supabase.com) and create a new project
+2. Wait for your project to be provisioned
+3. Navigate to **Settings → Database** in your Supabase dashboard
+
+#### Configure Database Connection
+
+Update your `.env` file with your Supabase credentials:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=your-project-ref.supabase.co
+DB_PORT=5432
+DB_DATABASE=postgres
+DB_USERNAME=postgres
+DB_PASSWORD=your-database-password
+
+SUPABASE_URL=https://your-project-ref.supabase.co
+SUPABASE_KEY=your-anon-key
+```
+
+**Where to find these values:**
+- `DB_HOST`: Found in Settings → Database → Connection string (host part)
+- `DB_PASSWORD`: The password you set when creating the project
+- `SUPABASE_URL`: Your project URL from Settings → API
+- `SUPABASE_KEY`: The `anon` public key from Settings → API
+
+#### Run Migrations
+
+Once configured, run the migrations to create all database tables:
+
+```bash
+php artisan migrate
+```
+
+### 4. Create Admin User
+
+Create an admin account using the provided script:
+
+```bash
+php create_admin.php
+```
+
+Or refer to `ADMIN_SETUP.md` for detailed instructions.
+
+### 5. Build Assets and Run
+
+Build frontend assets:
+
+```bash
+npm run dev
+```
+
+Start the development server:
+
+```bash
+php artisan serve
+```
+
+Visit `http://localhost:8000` in your browser.
+
+## Additional Documentation
+
+- **[ERD_EduFlow.md](ERD_EduFlow.md)** - Database schema and entity relationships
+- **[ADMIN_SETUP.md](ADMIN_SETUP.md)** - Admin account setup guide
+- **[UseCase_EduFlow.md](UseCase_EduFlow.md)** - Use cases and feature documentation
+- **[Gantt_EduFlow.md](Gantt_EduFlow.md)** - Project timeline and milestones
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
@@ -28,21 +137,6 @@ Laravel has the most extensive and thorough [documentation](https://laravel.com/
 You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
 
 ## Contributing
 

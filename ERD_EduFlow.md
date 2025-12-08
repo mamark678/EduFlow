@@ -2,6 +2,9 @@
 
 ## Database Schema Overview
 
+**Database Engine**: PostgreSQL (Supabase)
+**ORM**: Laravel Eloquent
+
 ```mermaid
 erDiagram
     USERS {
@@ -224,6 +227,9 @@ erDiagram
 - Unique constraints on email addresses
 - Indexes on frequently queried fields (course_id + order combinations)
 - Proper data types for different content (text for descriptions, integers for sizes/durations)
+- PostgreSQL native support for JSON/JSONB data types
+- Enum types for restricted value fields (role, video_type, etc.)
+- SSL-required connections for Supabase security
 
 ## Why PASSWORD_RESET_TOKENS Has No Explicit Foreign Key
 
