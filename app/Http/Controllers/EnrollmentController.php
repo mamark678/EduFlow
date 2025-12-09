@@ -56,9 +56,10 @@ class EnrollmentController extends Controller
             
             return back()->with('success', 'Enrollment request sent! The instructor will review your request and send you an enrollment code if approved.');
         } catch (\Exception $e) {
-            // If email fails, delete the enrollment and show error
-            $enrollment->delete();
-            return back()->with('error', 'Failed to send enrollment request. Please try again.');
+            // Log the error but keep the enrollment
+            \Log::error('Failed to send enrollment email: ' . $e->getMessage());
+            
+            return back()->with('success', 'Enrollment request sent! (Note: Email notification failed, but the instructor will see your request in their dashboard).');
         }
     }
 
