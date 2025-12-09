@@ -19,7 +19,7 @@ class ModuleController extends Controller
         $user = auth()->user();
         
         // Check if user is the instructor of this course, an enrolled student, or an admin
-        if ($user->id !== $course->instructor_id && 
+        if ($user->id != $course->instructor_id && 
             !$course->enrollments()->where('user_id', $user->id)->where('status', 'approved')->whereNotNull('enrolled_at')->exists() &&
             $user->role !== 'admin') {
             abort(403, 'Unauthorized');
@@ -40,7 +40,7 @@ class ModuleController extends Controller
      */
     public function create(Course $course)
     {
-        if (auth()->user()->id !== $course->instructor_id) {
+        if (auth()->user()->id != $course->instructor_id) {
             abort(403, 'Unauthorized');
         }
 
@@ -53,7 +53,7 @@ class ModuleController extends Controller
     public function store(Request $request, Course $course)
     {
         // Check if user is the instructor of this course
-        if (auth()->user()->id !== $course->instructor_id) {
+        if (auth()->user()->id != $course->instructor_id) {
             abort(403, 'Unauthorized');
         }
 
@@ -119,7 +119,7 @@ class ModuleController extends Controller
         }
         $user = auth()->user();
         // Check if user is the instructor of this course, an enrolled student, or an admin
-        if ($user->id !== $course->instructor_id && 
+        if ($user->id != $course->instructor_id && 
             !$course->enrollments()->where('user_id', $user->id)->where('status', 'approved')->whereNotNull('enrolled_at')->exists() &&
             $user->role !== 'admin') {
             abort(403, 'Unauthorized');
@@ -161,7 +161,7 @@ class ModuleController extends Controller
     public function edit(Course $course, Module $module)
     {
         // Check if user is the instructor of this course
-        if (auth()->user()->id !== $course->instructor_id) {
+        if (auth()->user()->id != $course->instructor_id) {
             abort(403, 'Unauthorized');
         }
 
@@ -174,7 +174,7 @@ class ModuleController extends Controller
     public function update(Request $request, Course $course, Module $module)
     {
         // Check if user is the instructor of this course
-        if (auth()->user()->id !== $course->instructor_id) {
+        if (auth()->user()->id != $course->instructor_id) {
             abort(403, 'Unauthorized');
         }
 
@@ -247,7 +247,7 @@ class ModuleController extends Controller
     public function destroy(Course $course, Module $module)
     {
         // Check if user is the instructor of this course
-        if (auth()->user()->id !== $course->instructor_id) {
+        if (auth()->user()->id != $course->instructor_id) {
             abort(403, 'Unauthorized');
         }
 
@@ -263,7 +263,7 @@ class ModuleController extends Controller
     public function reorder(Request $request, Course $course)
     {
         // Check if user is the instructor of this course
-        if (auth()->user()->id !== $course->instructor_id) {
+        if (auth()->user()->id != $course->instructor_id) {
             abort(403, 'Unauthorized');
         }
 
@@ -288,7 +288,7 @@ class ModuleController extends Controller
     public function publicIndex(Course $course)
     {
         // Only allow access if the user is enrolled, is the instructor, or is an admin
-        if (auth()->user()->id !== $course->instructor_id &&
+        if (auth()->user()->id != $course->instructor_id &&
             !$course->enrollments()->where('user_id', auth()->id())->where('status', 'approved')->whereNotNull('enrolled_at')->exists() &&
             auth()->user()->role !== 'admin') {
             abort(403, 'Unauthorized');
