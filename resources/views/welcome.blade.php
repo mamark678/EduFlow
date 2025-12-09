@@ -191,6 +191,10 @@
             .edu-nav {
                 flex-wrap: wrap;
                 /* Only wrap on mobile */
+                flex-direction: row;
+                /* FORCE row direction */
+                justify-content: space-between;
+                /* Ensure proper spacing */
                 padding: 1rem 1.5rem;
             }
 
@@ -1143,29 +1147,6 @@
                             <div class="book-stack">
                                 <div class="book book-1"></div>
                                 <div class="book book-2"></div>
-                                <div class="book book-3"></div>
-                                <div class="book book-4"></div>
-                            </div>
-                            <div class="graduation-cap">
-                                <a href="{{ url('/') }}" class="edu-logo">
-                                    <div class="edu-logo-icon">
-                                        <img src="{{ asset('public/images/edulogo.png') }}" alt="EduFlow Logo"
-                                            style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
-                                    </div>
-                                    <span class="logo-text"><span class="text-edu">Edu</span><span
-                                            class="text-flow">Flow</span></span>
-                                </a>
-
-                                <button class="mobile-menu-btn" onclick="toggleMenu(this)">
-                                    <div class="bar bar1"></div>
-                                    <div class="bar bar2"></div>
-                                    <div class="bar bar3"></div>
-                                </button>
-
-                                <div class="edu-nav-links" id="navLinks">
-                                    @if (Route::has('login'))
-                                        @auth
-                                            <a href="{{ url('/dashboard') }}" class="edu-nav-link">Dashboard</a>
                                         @else
                                             <a href="{{ route('login') }}" class="edu-nav-link">Log in</a>
 
