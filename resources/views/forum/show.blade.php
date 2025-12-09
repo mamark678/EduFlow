@@ -157,7 +157,7 @@
                                         </svg>
                                     </button>
                                     <span class="vote-score text-sm font-medium" id="score-{{ $post->id }}">{{ $post->upvotes - $post->downvotes }}</span>
-                                    <button onclick="vote('App\\Models\\ForumPost', {{ $post->id }}, 'downvote')" 
+                                    <button onclick="vote('App\\Models\\ForumPost', {{ $post->id }}, 'downvote')"
                                             class="vote-btn downvote-btn {{ $post->userVote() && $post->userVote()->vote_type === 'downvote' ? 'voted' : '' }}"
                                             data-votable-type="App\Models\ForumPost"
                                             data-votable-id="{{ $post->id }}"
