@@ -22,5 +22,11 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.env') === 'production') {
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
+
+        // Force Root URL if deployed on Render
+        if ($renderUrl = env('RENDER_EXTERNAL_URL')) {
+            \Illuminate\Support\Facades\URL::forceRootUrl($renderUrl);
+            config(['app.url' => $renderUrl]);
+        }
     }
 }
