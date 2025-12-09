@@ -85,11 +85,11 @@ class ForumPost extends Model
 
     public function userVote()
     {
-        if (!auth()->check()) {
+        if (!Auth::check()) {
             return null;
         }
-        
-        return $this->votes()->where('user_id', auth()->id())->first();
+
+        return $this->votes()->where('user_id', Auth::id())->first();
     }
 
     public function getScoreAttribute()

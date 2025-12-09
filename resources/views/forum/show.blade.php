@@ -66,7 +66,7 @@
                             <div class="flex space-x-3">
                                 <!-- Vote Column -->
                                 <div class="flex flex-col items-center space-y-1">
-                                    <button onclick="vote('App\\Models\\ForumPost', {{ $post->id }}, 'upvote')" 
+                                    <button onclick="vote('App\\Models\\ForumPost', '{{ $post->id }}', 'upvote')"
                                             class="vote-btn upvote-btn {{ $post->userVote() && $post->userVote()->vote_type === 'upvote' ? 'voted' : '' }}"
                                             data-votable-type="App\Models\ForumPost"
                                             data-votable-id="{{ $post->id }}"
@@ -76,7 +76,7 @@
                                         </svg>
                                     </button>
                                     <span class="vote-score text-sm font-medium" id="score-{{ $post->id }}">{{ $post->upvotes - $post->downvotes }}</span>
-                                    <button onclick="vote('App\\Models\\ForumPost', {{ $post->id }}, 'downvote')" 
+                                    <button onclick="vote('App\\Models\\ForumPost', '{{ $post->id }}', 'downvote')"
                                             class="vote-btn downvote-btn {{ $post->userVote() && $post->userVote()->vote_type === 'downvote' ? 'voted' : '' }}"
                                             data-votable-type="App\Models\ForumPost"
                                             data-votable-id="{{ $post->id }}"
@@ -147,7 +147,7 @@
                             <div class="flex space-x-3">
                                 <!-- Vote Column -->
                                 <div class="flex flex-col items-center space-y-1">
-                                    <button onclick="vote('App\\Models\\ForumPost', {{ $post->id }}, 'upvote')" 
+                                    <button onclick="vote('App\\Models\\ForumPost', '{{ $post->id }}', 'upvote')"
                                             class="vote-btn upvote-btn {{ $post->userVote() && $post->userVote()->vote_type === 'upvote' ? 'voted' : '' }}"
                                             data-votable-type="App\Models\ForumPost"
                                             data-votable-id="{{ $post->id }}"
@@ -157,7 +157,7 @@
                                         </svg>
                                     </button>
                                     <span class="vote-score text-sm font-medium" id="score-{{ $post->id }}">{{ $post->upvotes - $post->downvotes }}</span>
-                                    <button onclick="vote('App\\Models\\ForumPost', {{ $post->id }}, 'downvote')"
+                                    <button onclick="vote('App\\Models\\ForumPost', '{{ $post->id }}', 'downvote')"
                                             class="vote-btn downvote-btn {{ $post->userVote() && $post->userVote()->vote_type === 'downvote' ? 'voted' : '' }}"
                                             data-votable-type="App\Models\ForumPost"
                                             data-votable-id="{{ $post->id }}"
@@ -266,13 +266,25 @@
 </div>
 
 <style>
+.forum-header-bg {
+    background-color: {{ $forum->color ?: '#000000' }};
+    opacity: 0.125;
+}
+
+.forum-header-text {
+    color: {{ $forum->color ?: '#000000' }};
+}
+
 .vote-btn {
-    @apply p-1 rounded hover:bg-gray-100 transition-colors duration-200;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
     color: #6b7280;
 }
 
 .vote-btn:hover {
+    background-color: #f3f4f6;
     color: #374151;
+    transition: background-color 200ms, color 200ms;
 }
 
 .vote-btn.upvote-btn.voted {

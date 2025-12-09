@@ -41,7 +41,7 @@
                             <a href="{{ route('forum.show', $forum) }}" class="group block p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200">
                                 <div class="flex items-center space-x-3">
                                     <div class="flex-shrink-0">
-                                        <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-xl" style="color: {{ $forum->color }};">
+                                        <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-xl forum-icon-color">
                                             {!! $forum->icon !!}
                                         </div>
                                     </div>
