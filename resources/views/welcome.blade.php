@@ -1139,24 +1139,31 @@
     <div class="edu-header">
         <div class="edu-container">
             <nav class="edu-nav">
-                <a href="{{ route('courses.index') }}" class="edu-logo"
-                    style="display: flex; align-items: center; gap: 0.7rem;">
-                    <span style="display: flex; align-items: center; gap: 0.5rem;">
-                        <div class="logo-icon">
-                            <div class="glow-ring"></div>
-                            <div class="book-stack">
-                                <div class="book book-1"></div>
-                                <div class="book book-2"></div>
-                                        @else
-                                            <a href="{{ route('login') }}" class="edu-nav-link">Log in</a>
-
-                                            @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="edu-nav-link">Register</a>
-                                            @endif
-                                        @endauth
-                                    @endif
-                                </div>
-            </nav>
+    <a href="{{ route('courses.index') }}" class="edu-logo">
+        <span class="edu-logo-icon">E</span>
+        <span class="edu-logo">EduFlow</span>
+    </a>
+    
+    <button class="mobile-menu-btn" onclick="this.classList.toggle('change'); document.querySelector('.edu-nav-links').classList.toggle('show')">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </button>
+    
+    <div class="edu-nav-links">
+        <a href="{{ route('courses.index') }}" class="edu-nav-link">Courses</a>
+        @if (Route::has('login'))
+            @auth
+                <a href="{{ url('/dashboard') }}" class="edu-nav-link">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="edu-nav-link">Log in</a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="edu-nav-link">Register</a>
+                @endif
+            @endauth
+        @endif
+    </div>
+</nav>
         </div>
     </div>
 
