@@ -62,62 +62,13 @@ class AuthenticatedSessionController extends Controller
         //                    ->withErrors(['email' => 'Please verify your email address before logging in.']);
         // }
 
-        \Log::info('Generating OTP for non-admin user', ['user_id' => $user->id]);
-
-        // Generate OTP for non-admin users
-        $otpCode = strtoupper(substr(md5(uniqid()), 0, 6));
+        $request->session()->regenerate();
         
         $user->update([
-            'login_otp' => $otpCode,
-            'login_otp_expires_at' => now()->addMinutes(5),
+            'last_login_at' => now(),
         ]);
 
-        \Log::info('OTP generated and saved', [
-            'user_id' => $user->id,
-            'otp_code' => $otpCode,
-            'expires_at' => now()->addMinutes(5)
-        ]);
-
-        // Send OTP email
-        try {
-            Mail::to($user->email)->send(new LoginOtpMail($otpCode, $user->name));
-            \Log::info('OTP email sent successfully', ['email' => $user->email]);
-        } catch (\Exception $e) {
-            \Log::error('Failed to send OTP email', [
-                'email' => $user->email,
-                'error' => $e->getMessage()
-            ]);
-        }
-
-        // Store user data temporarily (before logout)
-        $userEmail = $user->email;
-        $userName = $user->name;
-
-        // Logout temporarily
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        \Log::info('User logged out and session regenerated', [
-            'new_session_id' => $request->session()->getId()
-        ]);
-
-        // Store data in the new session
-        $request->session()->put('pending_login_email', $userEmail);
-        $request->session()->put('pending_login_name', $userName);
-
-        \Log::info('Session data stored after regeneration', [
-            'pending_login_email' => $request->session()->get('pending_login_email'),
-            'pending_login_name' => $request->session()->get('pending_login_name'),
-            'session_id' => $request->session()->getId()
-        ]);
-
-        // Debug: Log the OTP code
-        \Log::info('OTP generated for user: ' . $userEmail . ' - Code: ' . $otpCode);
-
-        \Log::info('=== REDIRECTING TO OTP VERIFICATION ===');
-        
-        return redirect()->route('otp.verification.notice');
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
