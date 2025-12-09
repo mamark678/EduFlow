@@ -101,7 +101,6 @@
             padding: 1.5rem 3rem 1.5rem 2rem;
             box-shadow: 0 2px 8px #183046;
             position: relative;
-            flex-wrap: wrap;
         }
 
         .edu-logo {
@@ -109,6 +108,8 @@
             align-items: center;
             gap: 0.7rem;
             text-decoration: none;
+            flex-shrink: 0;
+            /* Prevent logo from shrinking */
         }
 
         .edu-logo-icon {
@@ -123,6 +124,7 @@
             font-weight: bold;
             font-size: 1.7rem;
             box-shadow: 0 2px 8px hsla(176, 57.50%, 40.60%, 0.10);
+            flex-shrink: 0;
         }
 
         .edu-logo {
@@ -186,6 +188,12 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .edu-nav {
+                flex-wrap: wrap;
+                /* Only wrap on mobile */
+                padding: 1rem 1.5rem;
+            }
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -197,6 +205,8 @@
                 gap: 1rem;
                 padding-top: 1rem;
                 animation: slideDown 0.3s ease-out;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 1rem;
             }
 
             .edu-nav-links.show {

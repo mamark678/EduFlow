@@ -215,6 +215,8 @@
                     gap: 1rem;
                     padding-top: 1rem;
                     animation: slideDown 0.3s ease-out;
+                    border-top: 1px solid rgba(255,255,255,0.1);
+                    margin-top: 1rem;
                 }
 
                 .edu-nav-links.show {
