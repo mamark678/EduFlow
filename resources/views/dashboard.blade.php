@@ -62,27 +62,6 @@
         </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
                 @if(Auth::user()->role === 'instructor')
-                    <!-- Pending Enrollments Alert -->
-                    @php
-                        $pendingCount = \App\Models\Enrollment::whereHas('course', function($q) {
-                            $q->where('instructor_id', Auth::id());
-                        })->where('status', 'pending')->count();
-                    @endphp
-
-                    @if($pendingCount > 0)
-                        <div style="background-color: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; padding: 1rem; border-radius: 0.5rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <span style="font-size: 1.5rem;">⚠️</span>
-                                <div>
-                                    <strong style="display: block; font-size: 1.1rem;">You have {{ $pendingCount }} pending enrollment request{{ $pendingCount > 1 ? 's' : '' }}</strong>
-                                    <span style="font-size: 0.9rem;">Students are waiting for your approval to join your courses.</span>
-                                </div>
-                            </div>
-                            <a href="{{ route('enrollments.pending') }}" style="background-color: #DC2626; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; text-decoration: none; font-weight: 600; white-space: nowrap;">
-                                Review Requests
-                            </a>
-                        </div>
-                    @endif
 
                     <a href="{{ route('enrollments.pending') }}" class="edu-btn edu-btn-info" style="justify-content: center; padding: 1.5rem; font-size: 1rem;">
                         <span>📝</span> Review Enrollments
