@@ -76,6 +76,41 @@
                         <span>📧</span> Send Announcements
                     </a>
                 @else
+                    <!-- Pending Enrollments (Awaiting Code) -->
+                    @php
+                        $awaitingCode = \App\Models\Enrollment::where('user_id', Auth::id())
+                            ->where('status', 'approved')
+                            ->whereNull('enrolled_at')
+                            ->with('course')
+                            ->get();
+                    @endphp
+
+                    @if($awaitingCode->count() > 0)
+                        <div class="col-span-full" style="background-color: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem;">
+                            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                                <span style="font-size: 2rem;">🎉</span>
+                                <div style="flex: 1;">
+                                    <h3 style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem;">Enrollment Approved!</h3>
+                                    <p style="margin-bottom: 1rem;">
+                                        Your enrollment for <strong>{{ $awaitingCode->first()->course->title }}</strong> has been approved by the instructor.
+                                        Since email notifications might be delayed, your access code is provided below.
+                                    </p>
+                                    
+                                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px dashed #3B82F6; display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; width: fit-content;">
+                                        <span>Your Code:</span>
+                                        <code style="background: #F3F4F6; padding: 0.25rem 0.75rem; border-radius: 0.25rem; font-family: monospace; font-size: 1.25rem; font-weight: 700; letter-spacing: 0.1em; color: #111827;">
+                                            {{ $awaitingCode->first()->code }}
+                                        </code>
+                                    </div>
+    
+                                    <a href="{{ route('enrollments.enter-code') }}" style="background-color: #2563EB; color: white; padding: 0.75rem 1.5rem; border-radius: 0.375rem; text-decoration: none; font-weight: 600; display: inline-block;">
+                                        Enter Code to Complete Logic
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <a href="{{ route('courses.index') }}" class="edu-btn edu-btn-primary" style="justify-content: center; padding: 1.5rem; font-size: 1rem;">
                         <span>🔍</span> Browse Courses
                     </a>
