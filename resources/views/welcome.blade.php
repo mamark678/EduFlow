@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to EduFlow</title>
     <link rel="icon" type="image/png" href="{{ asset('public/images/edulogo.png') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --eduflow-blue: #183046;
@@ -46,7 +49,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--eduflow-blue);
@@ -97,6 +100,8 @@
             justify-content: space-between;
             padding: 1.5rem 3rem 1.5rem 2rem;
             box-shadow: 0 2px 8px #183046;
+            position: relative;
+            flex-wrap: wrap;
         }
 
         .edu-logo {
@@ -127,9 +132,41 @@
             letter-spacing: 1px;
         }
 
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--eduflow-light);
+            margin: 5px 0;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        /* Animation for hamburger */
+        .change .bar1 {
+            transform: translate(0, 8px) rotate(-45deg);
+        }
+
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        .change .bar3 {
+            transform: translate(0, -8px) rotate(45deg);
+        }
+
         .edu-nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         .edu-nav-link {
@@ -145,6 +182,26 @@
         .edu-nav-link:hover {
             background: var(--eduflow-teal);
             color: var(--eduflow-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .edu-nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding-top: 1rem;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .edu-nav-links.show {
+                display: flex;
+            }
         }
 
         /* Hero Section */
@@ -164,8 +221,8 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: 
-                linear-gradient(rgba(30,41,59,0.7), rgba(30,41,59,0.7)),
+            background:
+                linear-gradient(rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.7)),
                 url('/images/library.png') center center/cover no-repeat;
             z-index: 0;
         }
@@ -190,6 +247,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -212,8 +270,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .hero-title {
@@ -269,7 +334,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: all 0.5s ease;
         }
 
@@ -330,10 +395,12 @@
                 opacity: 0;
                 transform: translateY(50px);
             }
+
             60% {
                 opacity: 0;
                 transform: translateY(50px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -489,7 +556,7 @@
         .cta-container {
             background: var(--eduflow-dark);
             border-radius: 24px;
-            box-shadow: 0 4px 24px rgba(44,163,156,0.10);
+            box-shadow: 0 4px 24px rgba(44, 163, 156, 0.10);
             padding: 2.5rem 2rem 2.5rem 2rem;
             max-width: 540px;
             text-align: center;
@@ -517,7 +584,7 @@
             font-size: 1.15rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 16px rgba(44,163,156,0.10);
+            box-shadow: 0 4px 16px rgba(44, 163, 156, 0.10);
             transition: background 0.2s, color 0.2s, transform 0.2s;
             text-decoration: none;
             gap: 0.7rem;
@@ -535,34 +602,34 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
             .edu-nav-links {
                 flex-direction: column;
                 gap: 0.5rem;
             }
-            
+
             .hero-title {
                 font-size: 2.5rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1.125rem;
             }
-            
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .edu-btn {
                 width: 100%;
                 max-width: 300px;
             }
-            
+
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .cta-title {
                 font-size: 2rem;
             }
@@ -574,6 +641,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -585,12 +653,15 @@
             cursor: pointer;
             position: relative;
         }
+
         .logo-container:hover .logo-icon {
             animation: logoHover 0.8s ease-in-out;
         }
+
         .logo-container:hover .logo-text {
             animation: textColorChange 0.8s ease-in-out;
         }
+
         .logo-icon {
             display: inline-block;
             position: relative;
@@ -598,6 +669,7 @@
             height: 60px;
             margin-bottom: 10px;
         }
+
         .book-stack {
             position: absolute;
             width: 50px;
@@ -605,35 +677,41 @@
             left: 5px;
             top: 10px;
         }
+
         .book {
             position: absolute;
             width: 50px;
             height: 8px;
             border-radius: 4px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
             opacity: 0;
             transform: translateX(-25px);
         }
+
         .book-1 {
             background: linear-gradient(135deg, #22d3ee 0%, #0891b2 100%);
             top: 0;
             animation: slideInBook 0.8s ease-out 0.2s forwards, loopAnimation 5s ease-in-out 1s infinite;
         }
+
         .book-2 {
             background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
             top: 9px;
             animation: slideInBook 0.8s ease-out 0.4s forwards, loopAnimation 5s ease-in-out 1.2s infinite;
         }
+
         .book-3 {
             background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
             top: 18px;
             animation: slideInBook 0.8s ease-out 0.6s forwards, loopAnimation 5s ease-in-out 1.4s infinite;
         }
+
         .book-4 {
             background: linear-gradient(135deg, #34d399 0%, #059669 100%);
             top: 27px;
             animation: slideInBook 0.8s ease-out 0.8s forwards, loopAnimation 5s ease-in-out 1.6s infinite;
         }
+
         .book::before {
             content: '';
             position: absolute;
@@ -641,10 +719,11 @@
             top: 1px;
             width: 40px;
             height: 6px;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 2px;
-            box-shadow: inset 0 0.5px 1px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0.5px 1px rgba(0, 0, 0, 0.1);
         }
+
         .book::after {
             content: '';
             position: absolute;
@@ -652,9 +731,10 @@
             top: 2px;
             width: 1.5px;
             height: 4px;
-            background: rgba(0,0,0,0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 0.5px;
         }
+
         .graduation-cap {
             position: absolute;
             width: 30px;
@@ -665,6 +745,7 @@
             transform: scale(0) rotate(45deg);
             animation: bounceInCap 1s ease-out 1.2s forwards, capLoop 5s ease-in-out 2s infinite;
         }
+
         .cap-top {
             position: absolute;
             width: 30px;
@@ -672,9 +753,10 @@
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             transform: rotate(45deg);
             border-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
             top: -5px;
         }
+
         .cap-base {
             position: absolute;
             width: 15px;
@@ -683,8 +765,9 @@
             left: 7.5px;
             top: 10px;
             border-radius: 3px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
+
         .tassel {
             position: absolute;
             width: 1px;
@@ -696,6 +779,7 @@
             opacity: 0;
             animation: tasselDrop 0.6s ease-out 1.8s forwards, tasselSwing 3s ease-in-out 2.5s infinite;
         }
+
         .tassel::after {
             content: '';
             position: absolute;
@@ -705,8 +789,9 @@
             bottom: -1.5px;
             left: -1px;
             border-radius: 50%;
-            box-shadow: 0 0.5px 1.5px rgba(0,0,0,0.2);
+            box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.2);
         }
+
         .logo-text {
             font-size: 21px;
             font-weight: 800;
@@ -715,26 +800,30 @@
             opacity: 0;
             transform: translateY(10px);
             animation: fadeInText 1s ease-out 2s forwards, textPulse 4s ease-in-out 3s infinite;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
+
         .text-edu {
             color: #0891b2;
         }
+
         .text-flow {
             color: #1e293b;
         }
+
         .glow-ring {
             position: absolute;
             width: 70px;
             height: 70px;
             left: -5px;
             top: -5px;
-            border: 1px solid rgba(8,145,178,0.3);
+            border: 1px solid rgba(8, 145, 178, 0.3);
             border-radius: 50%;
             opacity: 0;
             transform: scale(0.5);
             animation: expandGlow 2s ease-out 2.5s forwards, glowPulse 4s ease-in-out 4s infinite;
         }
+
         .particle {
             position: absolute;
             width: 2px;
@@ -743,72 +832,189 @@
             border-radius: 50%;
             opacity: 0;
         }
+
         .particle-1 {
             left: 10px;
             top: 15px;
             animation: floatParticle 3s ease-in-out 3s infinite;
         }
+
         .particle-2 {
             right: 10px;
             top: 25px;
             animation: floatParticle 3s ease-in-out 3.5s infinite;
         }
+
         .particle-3 {
             left: 25px;
             bottom: 15px;
             animation: floatParticle 3s ease-in-out 4s infinite;
         }
+
         @keyframes slideInBook {
-            0% { opacity: 0; transform: translateX(-25px); }
-            100% { opacity: 1; transform: translateX(0); }
+            0% {
+                opacity: 0;
+                transform: translateX(-25px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
+
         @keyframes bounceInCap {
-            0% { opacity: 0; transform: scale(0) rotate(45deg); }
-            50% { opacity: 1; transform: scale(1.2) rotate(0deg); }
-            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(45deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(0deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
         }
+
         @keyframes tasselDrop {
-            0% { opacity: 0; transform: translateY(-5px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         @keyframes fadeInText {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         @keyframes expandGlow {
-            0% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1.1); }
-            100% { opacity: 0.6; transform: scale(1); }
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
         }
+
         @keyframes floatParticle {
-            0%, 100% { opacity: 0; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(-7.5px); }
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-7.5px);
+            }
         }
+
         @keyframes loopAnimation {
-            0%, 100% { transform: translateX(0) scale(1); }
-            50% { transform: translateX(1px) scale(1.02); }
+
+            0%,
+            100% {
+                transform: translateX(0) scale(1);
+            }
+
+            50% {
+                transform: translateX(1px) scale(1.02);
+            }
         }
+
         @keyframes capLoop {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.05) rotate(2deg); }
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.05) rotate(2deg);
+            }
         }
+
         @keyframes tasselSwing {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg); }
-            75% { transform: rotate(-5deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
         }
+
         @keyframes textPulse {
-            0%, 100% { transform: translateY(0) scale(1); color: #1e293b; }
-            50% { transform: translateY(-1px) scale(1.02); color: #0891b2; }
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                color: #1e293b;
+            }
+
+            50% {
+                transform: translateY(-1px) scale(1.02);
+                color: #0891b2;
+            }
         }
+
         @keyframes glowPulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
         }
+
         @keyframes textColorChange {
-            0%, 100% { color: #1e293b; }
-            50% { color: #0891b2; }
+
+            0%,
+            100% {
+                color: #1e293b;
+            }
+
+            50% {
+                color: #0891b2;
+            }
         }
+
         .replay-btn {
             position: absolute;
             bottom: -40px;
@@ -822,83 +1028,105 @@
             font-size: 7px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(8,145,178,0.3);
+            box-shadow: 0 2px 6px rgba(8, 145, 178, 0.3);
             transition: all 0.3s ease;
             opacity: 0;
             animation: fadeInBtn 0.5s ease-out 4s forwards;
         }
+
         .replay-btn:hover {
             transform: translateX(-50%) translateY(-1px);
-            box-shadow: 0 3px 8px rgba(8,145,178,0.4);
+            box-shadow: 0 3px 8px rgba(8, 145, 178, 0.4);
         }
+
         .replay-btn:active {
             transform: translateX(-50%) translateY(0);
         }
+
         @keyframes fadeInBtn {
-            0% { opacity: 0; transform: translateX(-50%) translateY(5px); }
-            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
+
         .restart-animation .book {
             animation: none;
             opacity: 0;
             transform: translateX(-25px);
         }
+
         .restart-animation .graduation-cap {
             animation: none;
             opacity: 0;
             transform: scale(0) rotate(45deg);
         }
+
         .restart-animation .tassel {
             animation: none;
             opacity: 0;
         }
+
         .restart-animation .logo-text {
             animation: none;
             opacity: 0;
             transform: translateY(10px);
         }
+
         .restart-animation .glow-ring {
             animation: none;
             opacity: 0;
             transform: scale(0.5);
         }
+
         .restart-animation .particle {
             animation: none;
             opacity: 0;
         }
+
         @media (max-width: 768px) {
             .logo-icon {
                 width: 50px;
                 height: 50px;
             }
+
             .logo-text {
                 font-size: 16px;
             }
+
             .book-stack {
                 width: 40px;
                 height: 32.5px;
                 left: 5px;
                 top: 9px;
             }
+
             .book {
                 width: 40px;
                 height: 6.5px;
             }
+
             .graduation-cap {
                 width: 25px;
                 height: 17.5px;
                 left: 12.5px;
             }
         }
+    </style>
+</head>
 
-            </style>
-    </head>
 <body>
     <!-- Navigation Bar -->
     <div class="edu-header">
         <div class="edu-container">
             <nav class="edu-nav">
-                <a href="{{ route('courses.index') }}" class="edu-logo" style="display: flex; align-items: center; gap: 0.7rem;">
+                <a href="{{ route('courses.index') }}" class="edu-logo"
+                    style="display: flex; align-items: center; gap: 0.7rem;">
                     <span style="display: flex; align-items: center; gap: 0.5rem;">
                         <div class="logo-icon">
                             <div class="glow-ring"></div>
@@ -909,23 +1137,35 @@
                                 <div class="book book-4"></div>
                             </div>
                             <div class="graduation-cap">
-                                <div class="cap-top"></div>
-                                <div class="cap-base"></div>
-                                <div class="tassel"></div>
-                            </div>
-                            <div class="particle particle-1"></div>
-                            <div class="particle particle-2"></div>
-                            <div class="particle particle-3"></div>
-                        </div>
-                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--eduflow-teal); letter-spacing: 1px;">EduFlow</span>
-                    </span>
-                </a>
-                <div class="edu-nav-links">
-                    <a href="{{ route('courses.index') }}" class="edu-nav-link">Courses</a>
-                    <a href="{{ route('login') }}" class="edu-nav-link">Login</a>
-                    <a href="{{ route('register') }}" class="edu-nav-link">Sign up</a>
-                </div>
-                </nav>
+                                <a href="{{ url('/') }}" class="edu-logo">
+                                    <div class="edu-logo-icon">
+                                        <img src="{{ asset('public/images/edulogo.png') }}" alt="EduFlow Logo"
+                                            style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                                    </div>
+                                    <span class="logo-text"><span class="text-edu">Edu</span><span
+                                            class="text-flow">Flow</span></span>
+                                </a>
+
+                                <button class="mobile-menu-btn" onclick="toggleMenu(this)">
+                                    <div class="bar bar1"></div>
+                                    <div class="bar bar2"></div>
+                                    <div class="bar bar3"></div>
+                                </button>
+
+                                <div class="edu-nav-links" id="navLinks">
+                                    @if (Route::has('login'))
+                                        @auth
+                                            <a href="{{ url('/dashboard') }}" class="edu-nav-link">Dashboard</a>
+                                        @else
+                                            <a href="{{ route('login') }}" class="edu-nav-link">Log in</a>
+
+                                            @if (Route::has('register'))
+                                                <a href="{{ route('register') }}" class="edu-nav-link">Register</a>
+                                            @endif
+                                        @endauth
+                                    @endif
+                                </div>
+            </nav>
         </div>
     </div>
 
@@ -936,7 +1176,8 @@
             <div class="hero-badge">🚀 Modern E-Learning Platform</div>
             <h1 class="hero-title">Welcome to EduFlow</h1>
             <p class="hero-subtitle">
-                Transform your learning journey with our cutting-edge e-learning platform. Create, manage, and join courses with powerful tools designed for modern education.
+                Transform your learning journey with our cutting-edge e-learning platform. Create, manage, and join
+                courses with powerful tools designed for modern education.
             </p>
             <div class="hero-buttons">
                 <a href="{{ route('register') }}" class="edu-btn edu-btn-primary">
@@ -965,21 +1206,24 @@
                     <div class="feature-icon">📖</div>
                     <h3 class="feature-title">Course Management</h3>
                     <p class="feature-description">
-                        Create and organize courses with intuitive tools. Upload materials, set schedules, and manage student enrollment effortlessly.
+                        Create and organize courses with intuitive tools. Upload materials, set schedules, and manage
+                        student enrollment effortlessly.
                     </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💬</div>
                     <h3 class="feature-title">Interactive Learning</h3>
                     <p class="feature-description">
-                        Engage with peers and instructors through discussion forums, live chat, and collaborative projects.
+                        Engage with peers and instructors through discussion forums, live chat, and collaborative
+                        projects.
                     </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
                     <h3 class="feature-title">Secure Platform</h3>
                     <p class="feature-description">
-                        Your data is protected with enterprise-grade security measures and regular backups for peace of mind.
+                        Your data is protected with enterprise-grade security measures and regular backups for peace of
+                        mind.
                     </p>
                 </div>
             </div>
@@ -991,7 +1235,8 @@
         <div class="cta-container">
             <h2 class="cta-title">Ready to Transform Your Learning?</h2>
             <p class="cta-description">
-                Join thousands of students and educators who are already experiencing the future of education with EduFlow.
+                Join thousands of students and educators who are already experiencing the future of education with
+                EduFlow.
             </p>
             <div class="hero-buttons">
                 <a href="{{ route('register') }}" class="cta-btn">
@@ -1034,5 +1279,6 @@
             }, 100);
         }
     </script>
-    </body>
+</body>
+
 </html>

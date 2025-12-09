@@ -166,6 +166,62 @@
                 color: var(--eduflow-dark);
             }
 
+            /* Mobile Menu Button */
+            .mobile-menu-btn {
+                display: none;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 0.5rem;
+                z-index: 1001; /* Ensure above dropdowns */
+            }
+
+            .bar {
+                width: 25px;
+                height: 3px;
+                background-color: var(--eduflow-light);
+                margin: 5px 0;
+                transition: 0.4s;
+                border-radius: 2px;
+            }
+
+            /* Animation for hamburger */
+            .change .bar1 {
+                transform: translate(0, 8px) rotate(-45deg);
+            }
+
+            .change .bar2 {
+                opacity: 0;
+            }
+
+            .change .bar3 {
+                transform: translate(0, -8px) rotate(45deg);
+            }
+
+            /* Responsive Design Updates */
+            @media (max-width: 768px) {
+                .mobile-menu-btn {
+                    display: block;
+                }
+
+                .edu-nav {
+                    flex-wrap: wrap;
+                }
+
+                .edu-nav-links {
+                    display: none;
+                    width: 100%;
+                    flex-direction: column;
+                    gap: 1rem;
+                    padding-top: 1rem;
+                    animation: slideDown 0.3s ease-out;
+                }
+
+                .edu-nav-links.show {
+                    display: flex;
+                }
+            }
+
             .edu-dropdown {
                 position: relative;
             }
@@ -921,27 +977,22 @@
         <div class="edu-header">
             <div class="edu-container">
                 <nav class="edu-nav">
-                    <a href="{{ route('dashboard') }}" class="edu-logo">
-                        <div class="logo-icon">
-                            <div class="glow-ring"></div>
-                            <div class="book-stack">
-                                <div class="book book-1"></div>
-                                <div class="book book-2"></div>
-                                <div class="book book-3"></div>
-                                <div class="book book-4"></div>
-                            </div>
-                            <div class="graduation-cap">
-                                <div class="cap-top"></div>
-                                <div class="cap-base"></div>
-                                <div class="tassel"></div>
-                            </div>
-                            <div class="particle particle-1"></div>
-                            <div class="particle particle-2"></div>
-                            <div class="particle particle-3"></div>
-                        </div>
-                        EduFlow
-                    </a>
-                    <div class="edu-nav-links">
+                    <a href="{{ url('/') }}" class="edu-logo">
+                <div class="edu-logo-icon">
+                    <img src="{{ asset('public/images/edulogo.png') }}"
+                        alt="EduFlow Logo"
+                        style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+                </div>
+                <span class="logo-text"><span class="text-edu">Edu</span><span class="text-flow">Flow</span></span>
+            </a>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu(this)">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </button>
+
+            <div class="edu-nav-links" id="navLinks">
                         @auth
                             <a href="{{ route('dashboard') }}" class="edu-nav-link">Dashboard</a>
                             <a href="{{ route('courses.index') }}" class="edu-nav-link">Courses</a>
@@ -1257,6 +1308,12 @@
                     });
                 });
             });
+        </script>
+        <script>
+            function toggleMenu(x) {
+                x.classList.toggle("change");
+                document.getElementById("navLinks").classList.toggle("show");
+            }
         </script>
     </body>
 </html>
